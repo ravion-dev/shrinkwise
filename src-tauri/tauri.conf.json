@@ -25,7 +25,7 @@
       }
     ],
     "security": {
-      "csp": null
+      "csp": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' asset: http://asset.localhost data: blob:; font-src 'self' data:; connect-src ipc: http://ipc.localhost"
     }
   },
   "bundle": {
@@ -38,7 +38,7 @@
     "category": "Utility",
     "shortDescription": "Shrink your files to the max with a single setting",
     "longDescription": "Compresses images, video, audio, GIF, PDF, office documents, archives, text and SVG with a single lossy setting. Fonts are copied unchanged.",
-    "licenseFile": "../THIRD-PARTY.txt",
+    "licenseFile": "../LICENSE",
     "icon": [
       "icons/32x32.png",
       "icons/128x128.png",

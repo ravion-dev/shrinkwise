@@ -91,7 +91,9 @@ pub struct ToolProgress {
 
 const FFMPEG_WIN_URL: &str = "https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip";
 const SEVENZIP_URL: &str = "https://www.7-zip.org/a/7zr.exe";
+const SEVENZIP_SHA256: &str = "256feca8e274e5da655e2a284fabafd9f554365eb164862089dacd4e8276d282";
 const REALESRGAN_URL: &str = "https://github.com/xinntao/Real-ESRGAN/releases/download/v0.2.5.0/realesrgan-ncnn-vulkan-20220424-windows.zip";
+const REALESRGAN_SHA256: &str = "abc02804e17982a3be33675e4d471e91ea374e65b70167abc09e31acb412802d";
 const WAIFU2X_URL: &str = "https://github.com/nihui/waifu2x-ncnn-vulkan/releases/download/20250915/waifu2x-ncnn-vulkan-20250915-windows.zip";
 const WAIFU2X_SHA256: &str = "7425be94b94e4c8f37a1e433ac0e0100c43790e2c37418f4b65d8235adfbdc87";
 const QPDF_URL: &str =
@@ -498,7 +500,7 @@ pub async fn install_tool(app: &AppHandle, id: &str) -> Result<ToolInfo> {
                 "realesrgan-ncnn-vulkan",
                 "realesrgan-ncnn-vulkan",
                 "Real-ESRGAN",
-                None,
+                Some(REALESRGAN_SHA256),
             )
             .await
         }
@@ -613,26 +615,29 @@ async fn install_ffmpeg(app: &AppHandle) -> Result<ToolInfo> {
         let _ = fs::remove_file(&temp);
         download_file(app, "ffmpeg", FFMPEG_WIN_URL, &temp).await?;
 
-        // Üretici sha256 dosyasını sunuyorsa doğrula.
+        // Zorunlu SHA-256 doğrulaması: özet alınamazsa veya uyuşmazsa kurulumu durdur.
         emit_progress(app, "ffmpeg", "verify", 0, 0, "Verifying file integrity…");
-        let checksum =
+        let checksum_text =
             fetch_text("https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip.sha256")
                 .await
-                .ok();
-        if let Some(expected) = checksum {
-            let expected = expected
-                .split_whitespace()
-                .next()
-                .unwrap_or("")
-                .trim()
-                .to_lowercase();
-            if expected.len() == 64 {
-                let actual = sha256_file(&temp)?;
-                if actual != expected {
+                .map_err(|err| {
                     let _ = fs::remove_file(&temp);
-                    bail!("downloaded FFmpeg checksum does not match");
-                }
-            }
+                    anyhow!("could not fetch FFmpeg SHA-256 checksum: {err}")
+                })?;
+        let expected = checksum_text
+            .split_whitespace()
+            .next()
+            .unwrap_or("")
+            .trim()
+            .to_lowercase();
+        if expected.len() != 64 || !expected.chars().all(|c| c.is_ascii_hexdigit()) {
+            let _ = fs::remove_file(&temp);
+            bail!("invalid FFmpeg SHA-256 checksum format from server");
+        }
+        let actual = sha256_file(&temp)?;
+        if actual != expected {
+            let _ = fs::remove_file(&temp);
+            bail!("downloaded FFmpeg checksum does not match");
         }
 
         emit_progress(app, "ffmpeg", "extract", 0, 0, "Extracting archive…");
@@ -704,7 +709,21 @@ async fn install_sevenzip(app: &AppHandle) -> Result<ToolInfo> {
 
     let target = target_dir.join(exe_name("7zr"));
     let temp = target.with_extension("download");
+    let _ = fs::remove_file(&temp);
     download_file(app, "seven_zip", SEVENZIP_URL, &temp).await?;
+    emit_progress(
+        app,
+        "seven_zip",
+        "verify",
+        0,
+        0,
+        "Verifying file integrity…",
+    );
+    let actual = sha256_file(&temp)?;
+    if !actual.eq_ignore_ascii_case(SEVENZIP_SHA256) {
+        let _ = fs::remove_file(&temp);
+        bail!("7-Zip (7zr.exe) failed checksum verification; download aborted");
+    }
     if target.exists() {
         let _ = fs::remove_file(&target);
     }

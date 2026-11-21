@@ -37,7 +37,7 @@
       <rect x="0" y="0" width="184" height="68" rx="3" fill="#161513" stroke="#2C2A26"/>
       <text x="12" y="22" fill="#EDE9DF" font-size="12" font-weight="600">image_engine.rs</text>
       <text x="12" y="40" fill="#A09B8E" font-size="10.5">JPEG · PNG · WebP · AVIF</text>
-      <text x="12" y="56" fill="#77736A" font-size="10">image · ravif · oxipng</text>
+      <text x="12" y="56" fill="#77736A" font-size="10">image · jpeg-enc · webp</text>
 
       <rect x="197" y="0" width="184" height="68" rx="3" fill="#161513" stroke="#2C2A26"/>
       <text x="209" y="22" fill="#EDE9DF" font-size="12" font-weight="600">ffmpeg_engine.rs</text>

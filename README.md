@@ -10,7 +10,9 @@
 
   <p>
     <a href="https://github.com/ravion-dev/shrinkwise/releases/tag/v3.0.0"><img src="https://img.shields.io/badge/release-v3.0.0-EF5A2E?style=flat-square&labelColor=161513" alt="Release v3.0.0" /></a>
-    <img src="https://img.shields.io/badge/rust-2024_edition-EDE9DF?style=flat-square&labelColor=161513" alt="Rust 2024 Edition" />
+    <a href="https://github.com/ravion-dev/shrinkwise/actions/workflows/ci.yml"><img src="https://github.com/ravion-dev/shrinkwise/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
+    <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-7CC796?style=flat-square&labelColor=161513" alt="MIT License" /></a>
+    <img src="https://img.shields.io/badge/rust-1.90%2B_2024-EDE9DF?style=flat-square&labelColor=161513" alt="Rust 1.90+ (2024 Edition)" />
     <img src="https://img.shields.io/badge/tauri-2.10-EDE9DF?style=flat-square&labelColor=161513" alt="Tauri 2.10" />
     <img src="https://img.shields.io/badge/svelte-5_runes-EDE9DF?style=flat-square&labelColor=161513" alt="Svelte 5 Runes" />
     <img src="https://img.shields.io/badge/platform-windows_10%2F11_x64-7CC796?style=flat-square&labelColor=161513" alt="Windows 10/11 x64" />
@@ -49,7 +51,7 @@ All processing runs 100% locally on your hardware with atomic output protection:
 
 | Category | Extensions | Processing Engine | Strategy |
 | :--- | :--- | :--- | :--- |
-| **Images** | `jpg`, `jpeg`, `png`, `webp`, `avif`, `bmp`, `tiff` | Native Rust (`image`, `ravif`, `oxipng`) | Perceptual quantization scaling, metadata/EXIF stripping, lossless PNG optimization, optional format transcoding |
+| **Images** | `jpg`, `jpeg`, `png`, `webp`, `avif`, `bmp`, `tiff` | Native Rust (`image`, `jpeg-encoder`, `webp`) + FFmpeg (`libsvtav1` / `libaom-av1` for AVIF) | Perceptual quantization scaling, metadata/EXIF stripping, lossless `PngEncoder` re-encoding, optional format transcoding |
 | **Video** | `mp4`, `mkv`, `mov`, `webm`, `avi`, `m4v`, `wmv`, `flv` | FFmpeg (`NVENC`, `AMF`, `QSV`, `libx264`, `libx265`, `VP9`, `AV1`) | Hardware or software CRF/QP curve mapping, optional resolution cap and audio track pass-through or re-encode |
 | **Audio** | `mp3`, `flac`, `wav`, `ogg`, `aac`, `m4a`, `opus`, `wma` | FFmpeg (`libopus`, `aac`, `libmp3lame`, `flac`) | Bitrate scaling (`64–256 kbps`) in lossy mode or maximum-compression FLAC in lossless mode |
 | **Animated GIF** | `gif` | FFmpeg (`palettegen` + `paletteuse`) | Two-pass adaptive palette generation (`32–256` colors), frame rate scaling (`8–20 fps`), and bounding-width clamping |
@@ -71,24 +73,29 @@ All processing runs 100% locally on your hardware with atomic output protection:
 | **Archive** | `82%` | `q31` | `CRF 32` | `100 kbps` | `10 fps · 360 px` | `89 DPI` |
 | **Maximum** | `95%` | `q21` | `CRF 34` | `76 kbps` | `9 fps · 360 px` | `72 DPI` |
 
-> Enabling **Lossless Mode** overrides the lossiness curve across all engines: PNGs are optimized bit-identically via `oxipng`, videos use lossless quantizers, audio encodes to FLAC, PDFs run structural object-stream compaction via `qpdf`, and containers repack without lossy media re-encoding.
+> Enabling **Lossless Mode** overrides the lossiness curve across all engines: PNGs are re-encoded losslessly via `PngEncoder`, videos use lossless quantizers, audio encodes to FLAC, PDFs run structural object-stream compaction via `qpdf`, and containers repack without lossy media re-encoding.
 
 ---
 
-## Installation & Verification
+## Installation & First-Run Quick Start
 
 Download the latest binaries from the [Releases](https://github.com/ravion-dev/shrinkwise/releases/tag/v3.0.0) page:
 
-1. **Windows NSIS Installer (`ShrinkWise_3.0.0_x64-setup.exe` — 4.32 MB)**
+1. **Windows NSIS Installer (`ShrinkWise_3.0.0_x64-setup.exe` — 4.33 MB)**
    Supports per-user (`%LOCALAPPDATA%\ShrinkWise`) and per-machine (`C:\Program Files\ShrinkWise`) installation, Start Menu / Desktop shortcuts, and uninstallation via **Windows Settings > Installed Apps** or **Control Panel > Programs and Features**.
-2. **Portable Archive (`ShrinkWise_3.0.0_x64-portable.zip` — 5.61 MB)**
+2. **Portable Archive (`ShrinkWise_3.0.0_x64-portable.zip` — 5.63 MB)**
    Extract anywhere and run `ShrinkWise.exe`. No registry entries or `%APPDATA%` footprints are created when run from a writable folder.
+
+### First-Run Setup
+
+1. Launch **ShrinkWise** and open **Settings > Tools** to install optional external engines (`FFmpeg`, `7-Zip`, `Real-ESRGAN`, `Waifu2x`, `Ghostscript`, `qpdf`) with mandatory SHA-256 verification.
+2. Select a **Source** folder (or drag & drop a folder onto the window) and a **Destination** folder, then click **Scan** or **Start compression (`F5`)**.
 
 ### SHA-256 Checksums (`v3.0.0`)
 
 ```text
-EC997BFB654DDF386CA17E738DB533AF53C0737D5C91E56DD3F003D29BD8FC10  ShrinkWise_3.0.0_x64-setup.exe
-CEF008E255D8E9DF5FA7EAB8A29C0422D2D1998A41841AEDC2BA7FF656B1CCD0  ShrinkWise_3.0.0_x64-portable.zip
+8E7E5D580B3FEDA85C79B303B7313B2D3671E0A234D4E2314E1CCD800E79E71A  ShrinkWise_3.0.0_x64-setup.exe
+3B54F21492ED2D5B541AE44C84AEB653260A72DC4EEFEB6FA71E512A11536B59  ShrinkWise_3.0.0_x64-portable.zip
 ```
 
 ---
@@ -98,8 +105,8 @@ CEF008E255D8E9DF5FA7EAB8A29C0422D2D1998A41841AEDC2BA7FF656B1CCD0  ShrinkWise_3.0
 ### Prerequisites
 
 - **OS:** Windows 10 or Windows 11 (`x64`)
-- **Rust:** `1.85+` (`x86_64-pc-windows-msvc`, Edition 2024)
-- **Node.js:** `20+`
+- **Rust:** `1.90+` (`x86_64-pc-windows-msvc`, Edition 2024)
+- **Node.js:** `20.19+` or `22.12+` (required by Vite 8)
 - **C++ Toolchain:** Visual Studio Build Tools (Desktop development with C++)
 
 ### Development & Static Analysis
@@ -156,7 +163,7 @@ shrinkwise-rs/
         ├── compress.rs             Parallel batch coordinator, telemetry events, CSV/JSON reports
         ├── container_engine.rs     OOXML (DOCX/PPTX/XLSX), ODF, EPUB, CBZ, and ZIP repacker
         ├── ffmpeg_engine.rs        Video, audio, and two-pass adaptive GIF pipeline
-        ├── image_engine.rs         Native Rust JPEG, PNG, WebP, AVIF, BMP, and TIFF encoder
+        ├── image_engine.rs         Native Rust JPEG, PNG, WebP, BMP, and TIFF encoder (plus FFmpeg AVIF decode/encode)
         ├── pdf_engine.rs           Ghostscript & qpdf document optimizer
         ├── portable.rs             Portable/installed path resolution and Windows Job Object guard
         ├── settings.rs             Persistent configuration schema and defaults
@@ -168,10 +175,12 @@ shrinkwise-rs/
 
 ---
 
-## Support the Project
+## Support & License
 
-If ShrinkWise saves you time and storage, consider supporting its development:
+If ShrinkWise saves you time and storage, you can support its development on **[Buy Me a Coffee](https://buymeacoffee.com/ravion_dev)**:
 
 <div align="center">
   <a href="https://buymeacoffee.com/ravion_dev"><img src=".github/assets/btn-coffee.svg" alt="Buy Me a Coffee — buymeacoffee.com/ravion_dev" height="46" /></a>
 </div>
+
+ShrinkWise is released under the [MIT License](LICENSE). Optional external tools downloaded via **Settings > Tools** are governed by their own licenses; see [`THIRD-PARTY.txt`](THIRD-PARTY.txt).
