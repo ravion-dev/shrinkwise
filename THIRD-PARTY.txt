@@ -1,0 +1,52 @@
+ShrinkWise - Third-Party Components & License Notices
+=====================================================
+
+ShrinkWise uses the following open-source libraries and optional external
+tools. Each component is governed by its own license terms; please refer to
+the respective project repositories for full license texts.
+
+FFmpeg / FFprobe (Optional External Tool)
+  Source:  https://ffmpeg.org/
+  Build:   gyan.dev "release essentials" (downloaded on demand via the in-app
+           Tool Manager; not bundled in the repository or installer)
+  License: GPL v2+ / GPL v3 (when built with libx264 / libx265).
+  Note:    ShrinkWise invokes FFmpeg as an isolated child process and does
+           not link against FFmpeg libraries.
+
+7-Zip / 7zr.exe (Optional External Tool)
+  Source:  https://www.7-zip.org/
+  License: GNU LGPL + unRAR restriction
+  Note:    Downloaded on demand via the in-app Tool Manager.
+
+Real-ESRGAN & Waifu2x NCNN Vulkan (Optional External Tools)
+  Source:  https://github.com/xinntao/Real-ESRGAN-ncnn-vulkan
+           https://github.com/nihui/waifu2x-ncnn-vulkan
+  License: MIT
+  Note:    Downloaded on demand via the in-app Tool Manager.
+
+Tauri Framework
+  Source:  https://tauri.app/
+  License: MIT / Apache-2.0
+
+Svelte & SvelteKit
+  Source:  https://svelte.dev/
+  License: MIT
+
+Rust Crates
+  Listed in src-tauri/Cargo.toml and src-tauri/Cargo.lock. Primary licenses
+  include MIT, Apache-2.0, and BSD.
+
+  Image Engine:
+    - image: MIT / Apache-2.0
+    - jpeg-encoder: MIT
+    - webp: MIT
+
+  Stream & Archive Compression:
+    - brotli: MIT
+    - xz2 / liblzma: 0BSD / LGPL
+    - zstd: BSD / GPLv2 dual license
+    - flate2: MIT / Apache-2.0
+    - zip: MIT
+
+  Windows API Bindings:
+    - windows / windows-sys: MIT / Apache-2.0

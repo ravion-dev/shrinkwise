@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 340" width="100%" height="100%" fill="none">
+  <defs>
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#22211E" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <!-- Chassis Background -->
+  <rect width="920" height="340" rx="6" fill="#161513"/>
+  <rect width="920" height="340" rx="6" fill="url(#grid)" opacity="0.75"/>
+  <rect x="0.5" y="0.5" width="919" height="339" rx="5.5" stroke="#36342F"/>
+
+  <!-- Top Technical Rule -->
+  <line x1="0" y1="38" x2="920" y2="38" stroke="#36342F" stroke-width="1"/>
+  <rect x="22" y="14" width="8" height="8" fill="#EF5A2E"/>
+  <text x="38" y="23" fill="#A09B8E" font-family="'IBM Plex Mono', Consolas, monospace" font-size="11" font-weight="500" letter-spacing="1">SHRINKWISE // MEDIA &amp; DOCUMENT ENGINE</text>
+  <text x="898" y="23" fill="#77736A" font-family="'IBM Plex Mono', Consolas, monospace" font-size="11" text-anchor="end">RUST 2024 · TAURI 2.10 · SVELTE 5 · DXGI / VULKAN</text>
+
+  <!-- Vertical Divider -->
+  <line x1="486" y1="38" x2="486" y2="298" stroke="#36342F" stroke-width="1"/>
+
+  <!-- Left Column: Brand & Core Proposition -->
+  <g transform="translate(28, 64)">
+    <!-- Brand Mark (Exact ShrinkWise 1024x1024 Vector Geometry) -->
+    <svg x="0" y="0" width="48" height="48" viewBox="0 0 1024 1024">
+      <rect width="1024" height="1024" rx="220" fill="#0E0D0C"/>
+      <path d="M840 536V184H184V840H536" fill="none" stroke="#EDE9DF" stroke-width="104"/>
+      <rect x="568" y="568" width="232" height="232" fill="#EF5A2E"/>
+    </svg>
+
+    <!-- Title & Version -->
+    <text x="64" y="33" fill="#EDE9DF" font-family="'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="34" font-weight="600" letter-spacing="-0.6">ShrinkWise</text>
+    <rect x="258" y="11" width="56" height="23" rx="2" fill="#0E0D0C" stroke="#EDE9DF" stroke-width="1"/>
+    <text x="286" y="27" fill="#EDE9DF" font-family="'IBM Plex Mono', Consolas, monospace" font-size="12" font-weight="500" text-anchor="middle">v3.0.0</text>
+
+    <!-- Subtitle -->
+    <text x="0" y="80" fill="#EDE9DF" font-family="'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="16.5" font-weight="600">
+      Single-slider multi-format compression &amp; AI upscaling.
+    </text>
+    <text x="0" y="106" fill="#A09B8E" font-family="'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13">
+      Scales images, video, audio, GIFs, PDFs, Office docs &amp; ZIP archives
+    </text>
+    <text x="0" y="125" fill="#A09B8E" font-family="'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13">
+      along one coordinated lossiness curve, plus 2× / 4× Vulkan AI upscaling.
+    </text>
+
+    <!-- Specification Pills (2x2 grid for high legibility) -->
+    <g transform="translate(0, 146)" font-family="'IBM Plex Mono', Consolas, monospace" font-size="11.5">
+      <rect x="0" y="0" width="210" height="30" rx="3" fill="#0E0D0C" stroke="#36342F"/>
+      <rect x="12" y="11" width="7" height="7" fill="#EF5A2E"/>
+      <text x="27" y="19" fill="#EDE9DF">Rust 2024 · Tauri 2.10</text>
+
+      <rect x="220" y="0" width="210" height="30" rx="3" fill="#0E0D0C" stroke="#36342F"/>
+      <rect x="232" y="11" width="7" height="7" fill="#7CC796"/>
+      <text x="247" y="19" fill="#EDE9DF">GPU: NVENC · AMF · QSV</text>
+
+      <rect x="0" y="38" width="210" height="30" rx="3" fill="#0E0D0C" stroke="#36342F"/>
+      <rect x="12" y="49" width="7" height="7" fill="#7CC796"/>
+      <text x="27" y="57" fill="#EDE9DF">AI: Real-ESRGAN · Waifu2x</text>
+
+      <rect x="220" y="38" width="210" height="30" rx="3" fill="#0E0D0C" stroke="#36342F"/>
+      <text x="325" y="57" fill="#A09B8E" text-anchor="middle">4.3 MB · 100% Local</text>
+    </g>
+  </g>
+
+  <!-- Right Column: Single-Slider Telemetry Module -->
+  <g transform="translate(508, 56)">
+    <rect x="0" y="0" width="388" height="222" rx="4" fill="#0E0D0C" stroke="#2C2A26"/>
+
+    <text x="18" y="28" fill="#A09B8E" font-family="'IBM Plex Mono', Consolas, monospace" font-size="11" letter-spacing="0.8">UNIFIED LOSSINESS CURVE</text>
+    <text x="370" y="32" fill="#EF5A2E" font-family="'IBM Plex Mono', Consolas, monospace" font-size="25" font-weight="600" text-anchor="end">55%</text>
+
+    <text x="18" y="50" fill="#77736A" font-family="'IBM Plex Mono', Consolas, monospace" font-size="10.5">highest fidelity</text>
+    <text x="370" y="50" fill="#77736A" font-family="'IBM Plex Mono', Consolas, monospace" font-size="10.5" text-anchor="end">smallest file</text>
+
+    <!-- Slider Track -->
+    <rect x="18" y="60" width="352" height="6" rx="1" fill="#262420"/>
+    <rect x="18" y="60" width="194" height="6" rx="1" fill="#EF5A2E"/>
+    <rect x="206" y="51" width="11" height="24" rx="2" fill="#EDE9DF" stroke="#0E0D0C" stroke-width="1.5"/>
+    <rect x="210.5" y="55" width="2" height="16" fill="#EF5A2E"/>
+
+    <!-- Ruler Ticks -->
+    <g transform="translate(18, 76)" stroke="#36342F" stroke-width="1" font-family="'IBM Plex Mono', Consolas, monospace" font-size="10" fill="#77736A">
+      <line x1="0" y1="0" x2="0" y2="6"/><text x="0" y="18" stroke="none">0</text>
+      <line x1="88" y1="0" x2="88" y2="6"/><text x="88" y="18" stroke="none" text-anchor="middle">25</text>
+      <line x1="176" y1="0" x2="176" y2="6"/><text x="176" y="18" stroke="none" text-anchor="middle">50</text>
+      <line x1="264" y1="0" x2="264" y2="6"/><text x="264" y="18" stroke="none" text-anchor="middle">75</text>
+      <line x1="352" y1="0" x2="352" y2="6"/><text x="352" y="18" stroke="none" text-anchor="end">100</text>
+    </g>
+
+    <!-- Synchronized Auto-Plan Grid -->
+    <text x="18" y="116" fill="#77736A" font-family="'IBM Plex Mono', Consolas, monospace" font-size="10" letter-spacing="0.8">SYNCHRONIZED ENGINE PARAMETERS</text>
+
+    <g transform="translate(18, 125)" font-family="'IBM Plex Mono', Consolas, monospace">
+      <rect x="0" y="0" width="64" height="48" rx="2" fill="#161513" stroke="#2C2A26"/>
+      <text x="8" y="17" fill="#9A958A" font-size="9.5">IMAGE</text>
+      <text x="8" y="35" fill="#EDE9DF" font-size="12.5" font-weight="600">q51</text>
+
+      <rect x="70" y="0" width="68" height="48" rx="2" fill="#161513" stroke="#2C2A26"/>
+      <text x="78" y="17" fill="#9A958A" font-size="9.5">VIDEO</text>
+      <text x="78" y="35" fill="#EDE9DF" font-size="12.5" font-weight="600">CRF 27</text>
+
+      <rect x="144" y="0" width="66" height="48" rx="2" fill="#161513" stroke="#2C2A26"/>
+      <text x="152" y="17" fill="#9A958A" font-size="9.5">AUDIO</text>
+      <text x="152" y="35" fill="#EDE9DF" font-size="12.5" font-weight="600">152k</text>
+
+      <rect x="216" y="0" width="68" height="48" rx="2" fill="#161513" stroke="#2C2A26"/>
+      <text x="224" y="17" fill="#9A958A" font-size="9.5">GIF</text>
+      <text x="224" y="35" fill="#EDE9DF" font-size="12" font-weight="600">13fps</text>
+
+      <rect x="290" y="0" width="62" height="48" rx="2" fill="#161513" stroke="#2C2A26"/>
+      <text x="298" y="17" fill="#9A958A" font-size="9.5">PDF</text>
+      <text x="298" y="35" fill="#EDE9DF" font-size="12" font-weight="600">132dpi</text>
+    </g>
+
+    <!-- AI Upscale Strip -->
+    <rect x="18" y="183" width="352" height="24" rx="2" fill="#161513" stroke="#2C2A26"/>
+    <circle cx="30" cy="195" r="3.5" fill="#7CC796"/>
+    <text x="41" y="199" fill="#A09B8E" font-family="'IBM Plex Mono', Consolas, monospace" font-size="10.5">UPSCALE: Real-ESRGAN · Waifu2x · Lanczos3 (2× / 4×)</text>
+  </g>
+
+  <!-- Bottom Status Bar -->
+  <line x1="0" y1="298" x2="920" y2="298" stroke="#36342F" stroke-width="1"/>
+  <text x="22" y="323" fill="#A09B8E" font-family="'IBM Plex Mono', Consolas, monospace" font-size="11">FORMATS: JPEG · PNG · WebP · AVIF · MP4 · MKV · WebM · MP3 · FLAC · Opus · GIF · PDF · DOCX · PPTX · XLSX · ZIP · SVG</text>
+</svg>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 46" width="260" height="46" fill="none">
+  <rect width="260" height="46" rx="4" fill="#161513"/>
+  <rect x="0.75" y="0.75" width="258.5" height="44.5" rx="3.25" stroke="#E3B25A" stroke-width="1.5"/>
+  <!-- Industrial Coffee Cup Glyph -->
+  <path d="M16 18H28V26C28 28.7614 25.7614 31 23 31H21C18.2386 31 16 28.7614 16 26V18Z" stroke="#E3B25A" stroke-width="1.75"/>
+  <path d="M28 20H30.5C31.8807 20 33 21.1193 33 22.5C33 23.8807 31.8807 25 30.5 25H28" stroke="#E3B25A" stroke-width="1.75"/>
+  <line x1="15" y1="34" x2="30" y2="34" stroke="#E3B25A" stroke-width="1.75"/>
+  <line x1="19" y1="13" x2="19" y2="15.5" stroke="#EF5A2E" stroke-width="1.5"/>
+  <line x1="25" y1="13" x2="25" y2="15.5" stroke="#EF5A2E" stroke-width="1.5"/>
+  <text x="44" y="21" fill="#EDE9DF" font-family="'IBM Plex Sans', -apple-system, sans-serif" font-size="13" font-weight="600">Buy Me a Coffee</text>
+  <text x="44" y="35" fill="#E3B25A" font-family="'IBM Plex Mono', Consolas, monospace" font-size="10.5" font-weight="500">buymeacoffee.com/ravion_dev</text>
+</svg>

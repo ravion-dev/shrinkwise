@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 310" width="100%" height="100%" fill="none">
+  <rect width="1200" height="310" rx="6" fill="#161513"/>
+  <rect x="0.5" y="0.5" width="1199" height="309" rx="5.5" stroke="#36342F"/>
+
+  <!-- Header -->
+  <line x1="0" y1="42" x2="1200" y2="42" stroke="#36342F"/>
+  <rect x="24" y="16" width="8" height="8" fill="#EF5A2E"/>
+  <text x="42" y="25" fill="#A09B8E" font-family="'IBM Plex Mono', Consolas, monospace" font-size="11" letter-spacing="1">PIPELINE ARCHITECTURE // CLASSIFICATION, PARALLEL ENGINE POOL &amp; ATOMIC SIZE GUARD</text>
+
+  <!-- Stage 1: Scanner & Classifier -->
+  <g transform="translate(24, 66)">
+    <rect x="0" y="0" width="215" height="216" rx="4" fill="#0E0D0C" stroke="#36342F"/>
+    <text x="16" y="26" fill="#EF5A2E" font-family="'IBM Plex Mono', Consolas, monospace" font-size="11" font-weight="600">01 · SCAN &amp; CLASSIFY</text>
+    <text x="16" y="48" fill="#EDE9DF" font-family="'IBM Plex Sans', sans-serif" font-size="14" font-weight="600">classifier.rs</text>
+    <line x1="16" y1="62" x2="199" y2="62" stroke="#2C2A26"/>
+    <text x="16" y="84" fill="#A09B8E" font-family="'IBM Plex Sans', sans-serif" font-size="12">• Recursive directory walk</text>
+    <text x="16" y="106" fill="#A09B8E" font-family="'IBM Plex Sans', sans-serif" font-size="12">• 10-category format dispatch</text>
+    <text x="16" y="128" fill="#A09B8E" font-family="'IBM Plex Sans', sans-serif" font-size="12">• Free disk space verification</text>
+    <text x="16" y="150" fill="#A09B8E" font-family="'IBM Plex Sans', sans-serif" font-size="12">• Source-target overlap guard</text>
+    <rect x="16" y="172" width="183" height="28" rx="2" fill="#161513" stroke="#2C2A26"/>
+    <text x="107" y="190" fill="#EDE9DF" font-family="'IBM Plex Mono', Consolas, monospace" font-size="11" text-anchor="middle">PlanSummary Output</text>
+  </g>
+
+  <!-- Arrow 1 -->
+  <path d="M 245 174 L 269 174" stroke="#EF5A2E" stroke-width="2"/>
+  <polygon points="269,169 279,174 269,179" fill="#EF5A2E"/>
+
+  <!-- Stage 2: Parallel Engine Pool -->
+  <g transform="translate(285, 66)">
+    <rect x="0" y="0" width="615" height="216" rx="4" fill="#0E0D0C" stroke="#36342F"/>
+    <text x="18" y="26" fill="#EF5A2E" font-family="'IBM Plex Mono', Consolas, monospace" font-size="11" font-weight="600">02 · SPECIALIZED ENGINE POOL (compress.rs + upscale.rs)</text>
+    <text x="597" y="26" fill="#77736A" font-family="'IBM Plex Mono', Consolas, monospace" font-size="11" text-anchor="end">Windows Job Object Guarded</text>
+    <line x1="18" y1="40" x2="597" y2="40" stroke="#2C2A26"/>
+
+    <!-- 6 Engine Cards (2x3) -->
+    <g transform="translate(18, 52)" font-family="'IBM Plex Mono', Consolas, monospace">
+      <rect x="0" y="0" width="184" height="68" rx="3" fill="#161513" stroke="#2C2A26"/>
+      <text x="12" y="22" fill="#EDE9DF" font-size="12" font-weight="600">image_engine.rs</text>
+      <text x="12" y="40" fill="#A09B8E" font-size="10.5">JPEG · PNG · WebP · AVIF</text>
+      <text x="12" y="56" fill="#77736A" font-size="10">image · ravif · oxipng</text>
+
+      <rect x="197" y="0" width="184" height="68" rx="3" fill="#161513" stroke="#2C2A26"/>
+      <text x="209" y="22" fill="#EDE9DF" font-size="12" font-weight="600">ffmpeg_engine.rs</text>
+      <text x="209" y="40" fill="#A09B8E" font-size="10.5">Video · Audio · Adaptive GIF</text>
+      <text x="209" y="56" fill="#7CC796" font-size="10">NVENC · AMF · QSV · x265</text>
+
+      <rect x="394" y="0" width="185" height="68" rx="3" fill="#161513" stroke="#2C2A26"/>
+      <text x="406" y="22" fill="#EDE9DF" font-size="12" font-weight="600">pdf_engine.rs</text>
+      <text x="406" y="40" fill="#A09B8E" font-size="10.5">PDF Image &amp; Object Streams</text>
+      <text x="406" y="56" fill="#77736A" font-size="10">Ghostscript · qpdf</text>
+
+      <rect x="0" y="80" width="184" height="68" rx="3" fill="#161513" stroke="#2C2A26"/>
+      <text x="12" y="102" fill="#EDE9DF" font-size="12" font-weight="600">container_engine.rs</text>
+      <text x="12" y="120" fill="#A09B8E" font-size="10.5">DOCX · PPTX · XLSX · ZIP</text>
+      <text x="12" y="136" fill="#77736A" font-size="10">Embedded media + Deflate</text>
+
+      <rect x="197" y="80" width="184" height="68" rx="3" fill="#161513" stroke="#2C2A26"/>
+      <text x="209" y="102" fill="#EDE9DF" font-size="12" font-weight="600">text_engine.rs</text>
+      <text x="209" y="120" fill="#A09B8E" font-size="10.5">SVG · JSON · XML · HTML</text>
+      <text x="209" y="136" fill="#77736A" font-size="10">Minification · Brotli/Zstd</text>
+
+      <rect x="394" y="80" width="185" height="68" rx="3" fill="#161513" stroke="#2C2A26"/>
+      <text x="406" y="102" fill="#EDE9DF" font-size="12" font-weight="600">upscale.rs</text>
+      <text x="406" y="120" fill="#A09B8E" font-size="10.5">2× / 4× Image &amp; Video</text>
+      <text x="406" y="136" fill="#7CC796" font-size="10">Real-ESRGAN · Waifu2x</text>
+    </g>
+  </g>
+
+  <!-- Arrow 2 -->
+  <path d="M 906 174 L 930 174" stroke="#7CC796" stroke-width="2"/>
+  <polygon points="930,169 940,174 930,179" fill="#7CC796"/>
+
+  <!-- Stage 3: Atomic Guard & Report -->
+  <g transform="translate(946, 66)">
+    <rect x="0" y="0" width="230" height="216" rx="4" fill="#0E0D0C" stroke="#36342F"/>
+    <text x="16" y="26" fill="#7CC796" font-family="'IBM Plex Mono', Consolas, monospace" font-size="11" font-weight="600">03 · ATOMIC SIZE GUARD</text>
+    <text x="16" y="48" fill="#EDE9DF" font-family="'IBM Plex Sans', sans-serif" font-size="14" font-weight="600">portable.rs</text>
+    <line x1="16" y1="62" x2="214" y2="62" stroke="#2C2A26"/>
+    <text x="16" y="84" fill="#A09B8E" font-family="'IBM Plex Sans', sans-serif" font-size="12">• Encode to isolated .tmp file</text>
+    <text x="16" y="106" fill="#A09B8E" font-family="'IBM Plex Sans', sans-serif" font-size="12">• Size check: if Output ≥ Source,</text>
+    <text x="26" y="124" fill="#A09B8E" font-family="'IBM Plex Sans', sans-serif" font-size="12">preserve original untouched</text>
+    <text x="16" y="148" fill="#A09B8E" font-family="'IBM Plex Sans', sans-serif" font-size="12">• Preserve file timestamps</text>
+    <rect x="16" y="172" width="198" height="28" rx="2" fill="#17281E" stroke="#2C6A43"/>
+    <text x="115" y="190" fill="#7CC796" font-family="'IBM Plex Mono', Consolas, monospace" font-size="11" text-anchor="middle">CSV (BOM) &amp; JSON Report</text>
+  </g>
+</svg>
